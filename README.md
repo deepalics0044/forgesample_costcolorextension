@@ -1,7 +1,7 @@
 # forgesample_markupextentions
 # Description
 
-This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorials.
+This sample aims at adding extentions in  latest Viewer v7. Also, it is part of the [Learn Forge](http://learnforge.autodesk.io) tutorials.
 
 ### Languages
 
