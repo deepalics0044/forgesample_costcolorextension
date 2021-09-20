@@ -3,6 +3,7 @@ class ModelSummaryExtension extends Autodesk.Viewing.Extension {
         super(viewer, options);
         this._group = null;
         this._button = null;
+ 
     }
 
     load() {
@@ -23,6 +24,7 @@ class ModelSummaryExtension extends Autodesk.Viewing.Extension {
     }
 
     onToolbarCreated() {
+   
         // Create a new toolbar group if it doesn't exist
         this._group = this.viewer.toolbar.getControl('allMyAwesomeExtensionsToolbar');
         if (!this._group) {
@@ -33,6 +35,12 @@ class ModelSummaryExtension extends Autodesk.Viewing.Extension {
         // Add a new button to the toolbar group
         this._button = new Autodesk.Viewing.UI.Button('ModelSummaryExtensionButton');
         this._button.onClick = (ev) => {
+            var Rainbow = require('rainbowvis.js');
+            this.numberOfItems = 8;
+            this.rainbow = new Rainbow();
+            this.rainbow.setNumberRange(1, numberOfItems);
+            this.rainbow.setSpectrum('red', 'black');
+            this.s = '';
         // Check if the panel is created or not
 if (this._panel == null) {
     this._panel = new ModelSummaryPanel(this.viewer, this.viewer.container, 'modelSummaryPanel', 'Model Summary');
@@ -50,7 +58,7 @@ if (!this._panel.isVisible())
 // getAllLeafComponents function is defined at the bottom
 this.getAllLeafComponents((dbIds) => {
     // Now for leaf components, let's get some properties and count occurrences of each value
-    const filteredProps = ['Material', 'Design Status', 'Type Name'];
+    const filteredProps = ['Material', 'Design Status', 'Type Name','Price'];
     // Get only the properties we need for the leaf dbIds
     this.viewer.model.getBulkProperties(dbIds, filteredProps, (items) => {
         // Iterate through the elements we found
@@ -64,8 +72,12 @@ this.getAllLeafComponents((dbIds) => {
                 if (filteredProps[prop.displayName][prop.displayValue] === undefined)
                     filteredProps[prop.displayName][prop.displayValue] = 1;
                 else
-                    filteredProps[prop.displayName][prop.displayValue] += 1;
+                filteredProps[prop.displayName][prop.displayValue] += 1;
+                this.hexColour = this.rainbow.colourAt(item);
+                this.s += '#' + this.hexColour + ', ';
+                   
             });
+            document.write(this.s);
         });
         // Now ready to show!
         // The PropertyPanel has the .addProperty that receives the name, value
@@ -95,6 +107,7 @@ this.getAllLeafComponents((dbIds) => {
             callback(leaves);
         });
     }
+    
     
 }
 class ModelSummaryPanel extends Autodesk.Viewing.UI.PropertyPanel {
