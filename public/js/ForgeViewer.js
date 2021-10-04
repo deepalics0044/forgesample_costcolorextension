@@ -7,8 +7,8 @@ function launchViewer(urn) {
   };
 
   Autodesk.Viewing.Initializer(options, () => {
-    viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'), { extensions: ['MyAwesomeExtension','HandleSelectionExtension','ModelSummaryExtension','Autodesk.Viewing.MarkupsCore','Autodesk.Viewing.MarkupsGui'] });
-    
+    viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'), { extensions: ['MyAwesomeExtension','HandleSelectionExtension','ModelSummaryExtension','Autodesk.Viewing.MarkupsCore','Autodesk.Viewing.MarkupsGui','Color'] });
+  
     viewer.start();
     var documentId = 'urn:' + urn;
     Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
@@ -42,6 +42,13 @@ function getForgeToken(callback) {
         }, true);
         callback(leaves);
     });
+}
+function getAllDbIds(viewer) {
+  var instanceTree = viewer.model.getData().instanceTree;
+
+  var allDbIdsStr = Object.keys(instanceTree.nodeAccess.dbIdToIndex);
+
+  return allDbIdsStr.map(function(id) { return parseInt(id)});
 }
 
 }

@@ -49,7 +49,9 @@ class ModelData {
             var count = dbIds.length;
             dbIds.forEach(function (dbId) {
                 viewer.getProperties(dbId, function (props) {
+                   
                     props.properties.forEach(function (prop) {
+                        
                         if (!isNaN(prop.displayValue)) return; // let's not categorize properties that store numbers
 
                         // some adjustments for revit:
@@ -60,6 +62,7 @@ class ModelData {
                         if (_this._modelData[prop.displayName] == null) _this._modelData[prop.displayName] = {};
                         if (_this._modelData[prop.displayName][prop.displayValue] == null) _this._modelData[prop.displayName][prop.displayValue] = [];
                         _this._modelData[prop.displayName][prop.displayValue].push(dbId);
+                     
                     })
                     if ((--count) == 0) callback();
                 });
