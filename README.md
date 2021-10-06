@@ -13,3 +13,8 @@ The `master` branch contains the client-side UI: `html`, `js` and `css` files. T
 - [Go](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/go)
 - [PHP](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/php)
 - [Java](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/java)
+
+
+You should be ready to deploy to heroku, providing the same Forge credentials used to translate the model and valid credentials of the database when prompted for the environment settings.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
