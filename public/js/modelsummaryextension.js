@@ -61,7 +61,7 @@ this.getAllLeafComponents((dbIds) => {
         let g=0;
         let b=0;
         
-        let precision = 100;
+       
 
        dbIds.forEach(function (dbId) {
         
@@ -70,9 +70,11 @@ this.getAllLeafComponents((dbIds) => {
  
         // Iterate through the elements we found
         items.forEach((item) => {
+            let precision = 100;
             // and iterate through each property
             let intensity = Math.floor(Math.random() * (1 * precision - 0 * precision) + 0 * precision) / (1*precision);
             item.properties.forEach(function (prop) {
+                
                 // Use the filteredProps to store the count as a subarray
                 if (filteredProps[prop.displayName] === undefined)
                 {
