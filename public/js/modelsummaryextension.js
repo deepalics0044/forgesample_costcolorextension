@@ -60,19 +60,19 @@ this.getAllLeafComponents((dbIds) => {
         let r=1;
         let g=0;
         let b=0;
-        
+        let precision=100;
        
-
+        
        dbIds.forEach(function (dbId) {
         
     
 
- 
+      
         // Iterate through the elements we found
         items.forEach((item) => {
-            let precision = 100;
+           
             // and iterate through each property
-            let intensity = Math.floor(Math.random() * (1 * precision - 0 * precision) + 0 * precision) / (1*precision);
+            
             item.properties.forEach(function (prop) {
                 
                 // Use the filteredProps to store the count as a subarray
@@ -86,27 +86,27 @@ this.getAllLeafComponents((dbIds) => {
                 {
                     filteredProps[prop.displayName][prop.displayValue] = 1;
                    
-                    
+                    let intensity = Math.floor(Math.random() * (1 * precision - 0 * precision) + 0 * precision) / (1*precision);
                     var red = new THREE.Vector4(1,0,0,intensity);  
                     viewer.setThemingColor(dbId, red);  
-                   console.log(dbId);
+                 
                 } 
 
                 else
             {
                     filteredProps[prop.displayName][prop.displayValue] += 1;
-                    
+                    let intensity = Math.floor(Math.random() * (1 * precision - 0 * precision) + 0 * precision) / (1*precision);
                     var red = new THREE.Vector4(1,0,0,intensity);  
                     viewer.setThemingColor(dbId, red);  
-                console.log(dbId);
+          
                      
                 }
           
-
-});
-precision--;
+          
 });
 
+});
+precision=precision-1;
 });
  
         // Now ready to show!
@@ -120,7 +120,7 @@ precision--;
            
             });
         });
-      
+        
     });
 
 });
